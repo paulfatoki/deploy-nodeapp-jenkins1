@@ -33,8 +33,8 @@ pipeline {
         stage('Deploying the Docker Image to DockerHub') {
             steps {
                 script {
-                 withCredentials([string(credentialsId: 'devopshintdocker', variable: 'devopshintdocker')]) {
-                    sh 'docker login -u good777lord -p ${devopshintdocker}'
+                 withCredentials([string(credentialsId: 'gooddocker', variable: 'gooddocker')]) {
+                    sh 'docker login -u good777lord -p ${gooddocker}'
             }
             
             sh 'docker push good777lord/node-app:""$Build_ID""'
