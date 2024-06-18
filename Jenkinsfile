@@ -38,7 +38,7 @@ pipeline {
                  withCredentials([string(credentialsId: 'gooddocker', variable: 'gooddocker')]) {
                     sh 'docker login -u good777lord -p ${gooddocker}'
             }
-            
+            //normally
             //sh 'docker push good777lord/node-app:""$Build_ID""'
             sh 'docker push good777lord/node-app:latest'
         }

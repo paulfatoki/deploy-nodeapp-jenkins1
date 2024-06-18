@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: "good777lord/node-app:latest"
+        image: "good777lord/diamond-img:latest"
         ports:
           - containerPort: 3000
 ---
