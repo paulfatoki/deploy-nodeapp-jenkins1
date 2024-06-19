@@ -26,7 +26,7 @@ pipeline {
                   sh 'printenv'
                   sh 'git version'
                   //sh 'docker build -t good777lord/node-app:""$Build_ID"".'
-                  sh 'docker build -t good777lord/node-app .'
+                  sh 'docker build -t good777lord/node-app1 .'
                 }
             }
         }
@@ -40,20 +40,12 @@ pipeline {
             }
             //normally
             //sh 'docker push good777lord/node-app:""$Build_ID""'
-            sh 'docker push good777lord/node-app:latest'
+            sh 'docker push good777lord/node-app1:latest'
         }
             }   
         }
          
-     stage('Kubernetes deployment of application') {
-      steps {
-        script {
-          sh ('aws eks update-kubeconfig --name eks-cluster-100 --region eu-west-2')
-          sh "kubectl get ns"
-          sh "kubectl apply -f deployment.yaml"
-        }
-      }
-    }
+     
 
   }
 }
