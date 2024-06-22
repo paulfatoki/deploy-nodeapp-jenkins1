@@ -7,40 +7,40 @@ pipeline {
     stage("GitHub git cloning") {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/clement2019/Deploy-NodeAp-AWS-EKS-jenkins.git']])
-                    //git branch: 'main', url: 'https://github.com/clement2019/Deploy-NodeAp-AWS-EKS-jenkins.git' 
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/paulfatoki/deploy-nodeapp-jenkins1.git']])
+                    //git branch: 'main', url: 'https://github.com/paulfatoki/deploy-nodeapp-jenkins1.git' 
                 }
             }
         }
      
-    stage('intialising npm installation.......') {
+    stage('connecting npm installation.......') {
       steps {
         sh 'npm install'
       }
     }
   
-     stage('Building Docker Image for the app') {
+     stage('Docker build initializing') {
             steps {
                 script {
                  
                   sh 'printenv'
                   sh 'git version'
-                  //sh 'docker build -t good777lord/node-app:""$Build_ID"".'
-                  sh 'docker build -t good777lord/node-app1 .'
+                  //sh 'docker build -t paulfatoki/node-app:""$Build_ID"".'
+                  sh 'docker build -t paulfatoki/node-app1 .'
                 }
             }
         }
 
 
-        stage('Deploying the Docker Image to DockerHub') {
+        stage('Connecting the Docker Image to DockerHub') {
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerhub_ID', variable: 'dockerhub_ID')]) {
-                    sh 'docker login -u good777lord -p ${dockerhub_ID}'
+                    sh 'docker login -u paulfatoki -p ${dockerhub_ID}'
             }
-            //normally
-            //sh 'docker push good777lord/node-app:""$Build_ID""'
-            sh 'docker push good777lord/node-app1:latest'
+  
+            //sh 'docker push paulfatoki/node-app:""$Build_ID""'
+            sh 'docker push paulfatoki/node-app1:latest'
         }
             }   
         }
